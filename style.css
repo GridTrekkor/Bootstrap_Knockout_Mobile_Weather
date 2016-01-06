@@ -1,0 +1,101 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+    padding-top: 70px; /* needed to get page content out from under fixed nav */
+}
+
+.container-fluid {
+    background-color: #770252;
+    border-color: #770252;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFF;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #FFF;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-nav li a {
+    color: #FFF;
+}
+
+.navbar-default .navbar-nav li a:hover,
+.navbar-default .navbar-nav li a:active,
+.navbar-default .navbar-nav li a:focus {
+    color: #7AA2FF;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFF;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #7AA2FF;
+}
+
+.dataWrapper, .spinner, .locationMessage {
+    text-align : center;
+}
+
+.cityData {
+    width: 80%;
+    height: 100%;
+    padding-top: 8px;
+    display : inline-block;
+    text-align: center;
+}
+
+.city, .locationMessage {
+    color : #FF9664;
+    font-weight : bold;
+    font-size: 40px;
+}
+
+.border {
+    border-bottom : 1px solid #BFEAFF;
+    margin : 10px;
+}
+
+.temperature {
+    color: #9B0069;
+    font-size: 62px;
+    font-weight: 900;
+}
+
+.conditions {
+    font-size: 28px;
+    font-weight: 300;
+    color: #65A72A;
+}
+
+.weatherType {
+    font-size: 18px;
+    font-weight: 200;
+    color: #00699B;
+}
+
+.weatherData {
+    font-size: 22px;
+    font-weight: 700;
+    color: #00699B;
+    padding-bottom : 20px;
+}
+
+.forecastGroup, .forecast {
+    margin : 30px;
+}
+
+.forecastDate {
+    color: #65A72A;
+    font-size : 16px;
+    font-weight : 700;
+}
+
+.forecastTemp {
+    color: #00699B;
+    font-size : 16px;
+    font-weight : 400;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery.min.js"></script>
+    <!--<script src="angular.min.js"></script>-->
+    <script src="knockout-3.4.0.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="style.css">
+    <title>Bootstrap Mobile Weather Knockout</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#weatherNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">Bootstrap KO Weather</a>
+        </div>
+        <div class="collapse navbar-collapse" id="weatherNavbar">
+            <ul class="nav navbar-nav" data-toggle="collapse">
+                <li><a href="" data-bind="click: getWeather.bind($data, 'KMSP')" data-toggle="collapse" data-target="#weatherNavbar.in">Minneapolis</a></li>
+                <li><a href="" data-bind="click: getWeather.bind($data, 'KEAU')" data-toggle="collapse" data-target="#weatherNavbar.in">Eau Claire</a></li>
+                <li><a href="" data-bind="click: getWeather.bind($data, 'KORD')" data-toggle="collapse" data-target="#weatherNavbar.in">Chicago</a></li>
+                <li><a href="" data-bind="click: getWeather.bind($data, 'KSAN')" data-toggle="collapse" data-target="#weatherNavbar.in">San Diego</a></li>
+                <li><a href="" data-bind="click: getWeather.bind($data, 'EGLL')" data-toggle="collapse" data-target="#weatherNavbar.in">London</a></li>
+            </ul>
+            <div class="navbar-form navbar-right" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Airport Code" data-bind="value: searchTerm" onclick="select()">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default" data-bind="click: searchWeather.bind($data, searchTerm)" data-toggle="collapse" data-target="#weatherNavbar.in">Search</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="spinner" data-bind="if: showSpinner">
+    <img src="spinner.gif" />
+</div>
+
+<div class="locationMessage" data-bind="if: locationError"><span data-bind="text: errorType" style="font-size:30px;"></span></div>
+
+<div class="dataWrapper" data-bind="if: showWeather">
+
+    <div class="cityData">
+
+        <div class="city" data-bind="text: city"></div>
+
+        <div class="border"></div>
+
+        <div class="temperature" data-bind="text: temperature"></div>
+
+        <div><img data-bind="attr: { src: icon }" /></div>
+        <div class="conditions" data-bind="text: conditions"></div>
+
+        <div class="border"></div>
+
+        <div class="weatherType">humidity</div>
+        <div class="weatherData" data-bind="text: humidity"></div>
+
+        <div class="weatherType">dew point</div>
+        <div class="weatherData">
+            <span data-bind="text: dewPoint"></span>&deg;
+        </div>
+
+        <div class="weatherType">wind</div>
+        <div class="weatherData">
+            <span data-bind="text: windSpeed"></span>
+            mph
+            <span data-bind="text: windDirection"></span>
+        </div>
+
+        <div class="weatherType">pressure</div>
+        <div class="weatherData">
+            <span data-bind="text: pressure"></span>
+            <span data-bind="text: pressureTrend"></span>
+        </div>
+
+        <div class="border"></div>
+
+        <div class="forecastGroup" data-bind="foreach: forecastsArray">
+            <div class="forecast">
+                <span class="forecastDate" data-bind="text: date"></span>
+                <br>
+                <img data-bind="attr: { src: icon }" />
+                <br>
+                <span class="forecastTemp">Hi: <b><span data-bind="text: hi"></span></b>&nbsp;&nbsp;Lo: <b><span data-bind="text: lo"></span></b></span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
