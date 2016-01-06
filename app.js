@@ -31,6 +31,9 @@ $(function() {
             main.showWeather(false);
             main.showSpinner(true);
 
+            // convert location to upper case for API use
+            loc = loc.toUpperCase();
+
             $.ajax({
                 url: 'http://api.wunderground.com/api/a7942b382662121a/geolookup/conditions/forecast/astronomy/q/' + loc + '.json?callback=JSON_CALLBACK',
                 dataType: 'jsonp'
@@ -43,20 +46,19 @@ $(function() {
                         main.locationError(true);
                     }
                 } else {
+                    main.city(data.current_observation.observation_location.city);
+                    main.temperature(data.current_observation.temp_f);
+                    main.conditions(data.current_observation.weather);
+                    main.dewPoint(data.current_observation.dewpoint_f);
+                    main.humidity(data.current_observation.relative_humidity);
+                    main.windDirection(data.current_observation.wind_dir);
+                    main.windSpeed(data.current_observation.wind_mph);
+                    main.pressure(data.current_observation.pressure_in);
+                    main.icon(data.current_observation.icon_url);
 
-                    main.city(data['current_observation']['observation_location']['city']);
-                    main.temperature(data['current_observation']['temp_f']);
-                    main.conditions(data['current_observation']['weather']);
-                    main.dewPoint(data['current_observation']['dewpoint_f']);
-                    main.humidity(data['current_observation']['relative_humidity']);
-                    main.windDirection(data['current_observation']['wind_dir']);
-                    main.windSpeed(data['current_observation']['wind_mph']);
-                    main.pressure(data['current_observation']['pressure_in']);
-                    main.icon(data['current_observation']['icon_url']);
-
-                    if (data['current_observation']['pressure_trend'] == "+") main.pressureTrend("R");
-                    if (data['current_observation']['pressure_trend'] == "0") main.pressureTrend("S");
-                    if (data['current_observation']['pressure_trend'] == "-") main.pressureTrend("F");
+                    if (data.current_observation.pressure_trend == "+") main.pressureTrend("R");
+                    if (data.current_observation.pressure_trend == "0") main.pressureTrend("S");
+                    if (data.current_observation.pressure_trend == "-") main.pressureTrend("F");
 
                     main.forecastsArray = ko.observableArray([]);
 
