@@ -48,7 +48,6 @@ $(function() {
                     main.icon = ko.observable((data.current_observation.icon_url));
 
                     let pressureTrend = data.current_observation.pressure_trend;
-
                     if (pressureTrend == "+") main.pressureTrend = ko.observable(("R"));
                     if (pressureTrend == "0") main.pressureTrend = ko.observable(("S"));
                     if (pressureTrend == "-") main.pressureTrend = ko.observable(("F"));
