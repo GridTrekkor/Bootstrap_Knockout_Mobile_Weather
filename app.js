@@ -1,3 +1,5 @@
+'use strict';
+
 $(function() {
 
     function AppViewModel() {
@@ -7,21 +9,18 @@ $(function() {
         // set initial vars
         main.showWeather = ko.observable(false);
         main.showSpinner = ko.observable(false);
-        main.searchTerm = ko.observable("");
         main.locationError = ko.observable(false);
+        main.searchTerm = ko.observable("");
         main.errorType = ko.observable("Location not found.");
 
-        main.searchWeather = function() {
-            main.getWeather(main.searchTerm());
+        main.searchWeather = () => {
+            main.getWeather(main.searchTerm().toUpperCase());
         };
 
-        main.getWeather = function(loc) {
+        main.getWeather = (loc) => {
 
             main.showWeather(false);
             main.showSpinner(true);
-
-            // convert location to upper case for API use
-            loc = loc.toUpperCase();
 
             $.ajax({
                 url: 'http://api.wunderground.com/api/a7942b382662121a/geolookup/conditions/forecast/astronomy/q/' + loc + '.json?callback=JSON_CALLBACK',
@@ -32,6 +31,7 @@ $(function() {
 
                 if (data.response.error) {
                     if (data.response.error.type == "querynotfound") {
+                        // display error if searched location is not found
                         main.locationError(true);
                     }
                 } else {
