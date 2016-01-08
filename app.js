@@ -55,10 +55,10 @@ $(function() {
                     // build forecast array
                     main.forecastsArray = ko.observableArray([]);
 
-                    var i = 0;
+                    let i = 0;
                     while (i < data.forecast.simpleforecast.forecastday.length) {
 
-                        var fc = data.forecast.simpleforecast.forecastday[i];
+                        let fc = data.forecast.simpleforecast.forecastday[i];
 
                         main.forecastsArray.push({
                             date: fc.date.weekday + " " + fc.date.month + "/" + fc.date.day,
