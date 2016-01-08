@@ -13,9 +13,8 @@ $(function() {
         main.searchTerm = ko.observable("");
         main.errorType = ko.observable("Location not found.");
 
-        main.searchWeather = () => {
-            main.getWeather(main.searchTerm().toUpperCase());
-        };
+        // pass search term to main getWeather function
+        main.searchWeather = () => { main.getWeather(main.searchTerm().toUpperCase()); };
 
         main.getWeather = (loc) => {
 
