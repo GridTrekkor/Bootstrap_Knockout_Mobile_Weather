@@ -34,6 +34,8 @@ $(function() {
                         main.locationError(true);
                     }
                 } else {
+                    main.locationError(false);
+
                     // connect JSON response to observables
                     main.city = ko.observable((data.current_observation.observation_location.city));
                     main.temperature = ko.observable((data.current_observation.temp_f));
@@ -45,10 +47,13 @@ $(function() {
                     main.pressure = ko.observable((data.current_observation.pressure_in));
                     main.icon = ko.observable((data.current_observation.icon_url));
 
-                    if (data.current_observation.pressure_trend == "+") main.pressureTrend = ko.observable(("R"));
-                    if (data.current_observation.pressure_trend == "0") main.pressureTrend = ko.observable(("S"));
-                    if (data.current_observation.pressure_trend == "-") main.pressureTrend = ko.observable(("F"));
+                    let pressureTrend = data.current_observation.pressure_trend;
 
+                    if (pressureTrend == "+") main.pressureTrend = ko.observable(("R"));
+                    if (pressureTrend == "0") main.pressureTrend = ko.observable(("S"));
+                    if (pressureTrend == "-") main.pressureTrend = ko.observable(("F"));
+
+                    // build forecast array
                     main.forecastsArray = ko.observableArray([]);
 
                     var i = 0;
